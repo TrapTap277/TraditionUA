@@ -244,7 +244,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1160562772}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Settings
         m_Mode: 1
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1160562772}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: NewGame
         m_Mode: 1
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1160562772}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Exit
         m_Mode: 1
@@ -1345,7 +1345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1160562773}
-  - component: {fileID: 1160562772}
+  - component: {fileID: 1160562774}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -1353,24 +1353,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1160562772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160562771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f3a3bab8c937224384f7ffb34786882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingsPanel: {fileID: 2045931388}
-  volumeSlider: {fileID: 167030005}
-  continueButton: {fileID: 0}
-  newGameButton: {fileID: 483386517}
-  settingsButton: {fileID: 125015978}
-  exitButton: {fileID: 1125087454}
 --- !u!4 &1160562773
 Transform:
   m_ObjectHideFlags: 0
@@ -1386,6 +1368,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1160562774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160562771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c9c222bf0c52a4196ecb465eb726c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  languageText: {fileID: 0}
+  mainMenu: {fileID: 0}
+  settingsMenu: {fileID: 0}
+  levelsMenu: {fileID: 0}
+  creditsMenu: {fileID: 0}
+  tutorialMenu: {fileID: 0}
+  resumeButton: {fileID: 0}
+  newGameButton: {fileID: 0}
+  continueButton: {fileID: 0}
+  exitButton: {fileID: 0}
 --- !u!1 &1176008521
 GameObject:
   m_ObjectHideFlags: 0
