@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
+public class Menu : MonoBehaviour, IManager
 {
   
     public Text languageText;
@@ -20,6 +20,11 @@ public class Menu : MonoBehaviour
     public Button exitButton;
 
     private string currentSceneName;
+
+    public void Init()
+    {
+        Debug.Log("I am initialized");
+    }
 
     private void Start()
     {
@@ -96,6 +101,11 @@ public class Menu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void Dispose()
+    {
+        Debug.Log("I am Disposed");
     }
 }
 
