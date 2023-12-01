@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\user\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\user\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_TraditionUA.54310743.00" t="ExcludeRecursive" />
+    <e p="D:\Unity Project\Project\TraditionUA" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Andre" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="SavingManager.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Danylo" t="Include">
+          <e p="Read" t="Include">
+            <e p="clarification.txt" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="InitalController.cs" t="Include" />
+            <e p="Interface" t="Include">
+              <e p="IManager.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Ihor" t="Include" />
+        <e p="Rostik" t="Include">
+          <e p="New Folder" t="Include" />
+          <e p="RostikScripts" t="Include" />
+        </e>
+        <e p="Sasha" t="Include" />
+        <e p="Scenes" t="Include" />
+        <e p="Settings" t="Include" />
+        <e p="Teymur" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="Menu.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include" />
+        </e>
+        <e p="TutorialInfo" t="Include">
+          <e p="Icons" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="Editor" t="Include">
+              <e p="ReadmeEditor.cs" t="Include" />
+            </e>
+            <e p="Readme.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+      <e p="TraditionUA.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
