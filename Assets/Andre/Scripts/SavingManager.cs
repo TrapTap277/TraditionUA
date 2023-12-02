@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SavingManager : MonoBehaviour
+[System.Serializable]
+public class SavingManager
 {
-    
+    public string Name;
 }
