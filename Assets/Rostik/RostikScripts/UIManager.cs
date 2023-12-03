@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IManager
 {
     private List<UIPopup> _uiPopups = new List<UIPopup>();
 
@@ -26,6 +26,16 @@ public class UIManager : MonoBehaviour
         {
             _popup.Hide();
         }
+    }
+
+    public void Init()
+    {
+        
+    }
+
+    public void Dispose()
+    {
+        
     }
 }
 

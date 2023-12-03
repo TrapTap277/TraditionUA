@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Base;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,18 +29,25 @@ public class Menu : MonoBehaviour, IManager
 
     private void Start()
     {
+        resumeButton.onClick.AddListener(OpenSettings);
+        
         currentSceneName = SceneManager.GetActiveScene().name;
 
         if (PlayerPrefs.HasKey("Language"))
         {
-            SetLanguage(PlayerPrefs.GetString("Language"));
+            //SetLanguage(PlayerPrefs.GetString("Language"));
         }
         else
         {
-            SetLanguage("English");
+            //SetLanguage("English");
         }
 
         UpdateMenus();
+    }
+
+    private void OpenSettings()
+    {
+        Register.Get<UIManager>().Show(UIPopupType.POPUP1);
     }
 
     public void UpdateMenus()
