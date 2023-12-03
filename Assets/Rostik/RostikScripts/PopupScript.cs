@@ -3,25 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopupScript : UIPopupsManager
+public class PopupScript : UIPopup
 {
-    //[SerializeField] private Image _popup;
+    [SerializeField] private Image _popup;
+    
+    public override void Show()
+    {
+        base.Show();
 
-    //public UIPopupType UIPopupType { get; }
+        Debug.Log("Show");
+    }
 
-    //public UIPopupType _type = UIPopupType.POPUP1;
+    public override void Hide()
+    {
+        base.Hide();
 
-    //public override void Show()
-    //{
-    //    base.Show();
-
-    //    Debug.Log("Show");
-    //}
-
-    //public override void Hide()
-    //{
-    //    base.Hide();
-
-    //    Debug.Log("Hide");
-    //}
+        Debug.Log("Hide");
+    }
 }

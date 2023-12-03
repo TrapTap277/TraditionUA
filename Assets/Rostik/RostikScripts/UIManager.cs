@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIPopupsManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    [SerializeField] private List<UIPopup> _uiPopups = new List<UIPopup>();
+    private List<UIPopup> _uiPopups = new List<UIPopup>();
 
     public UIPopup Show(UIPopupType type)
     {
-        UIPopup _popup = _uiPopups.Find(x => x.UIPopupType == type);
+        UIPopup _popup = Resources.Load<UIPopup>(type.ToString());
+
+        UIPopup newPopup = null;
         if (_popup != null)
         {
-            _popup.Show();
+            newPopup = Instantiate(_popup, transform); 
+            newPopup.Show();
         }
-
-        return _popup;
+        _uiPopups.Add(newPopup);
+        return newPopup;
     }
 
     public void Hide(UIPopupType type)
