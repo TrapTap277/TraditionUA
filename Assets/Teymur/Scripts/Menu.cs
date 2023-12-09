@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour, IManager
 {
-  
     public Text languageText;
     public GameObject mainMenu;
     public GameObject settingsMenu;

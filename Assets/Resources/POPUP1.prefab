@@ -249,6 +249,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a4513f5a52eba409e66930b4381d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPopupType: 1
+  UIPopupType: 2
   _popup: {fileID: 0}
-  _type: 1

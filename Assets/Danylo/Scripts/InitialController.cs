@@ -3,7 +3,7 @@ using Base;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class InitialController : MonoBehaviour
+public class InitialController : MonoBehaviour 
 {
     //Сюди в інспекторі вкласти всі префаби менеджерів
     [FormerlySerializedAs("uiManagerPrefab")] [SerializeField] private UIManager uiManager;

@@ -57,5 +57,6 @@ public class UIPopup : MonoBehaviour
 public enum UIPopupType
 {
     None,
-    POPUP1
+    POPUP1,
+    LevelChanger
 }
