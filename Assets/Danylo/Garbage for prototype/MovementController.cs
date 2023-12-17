@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MovementController : MonoBehaviour
 {
     [SerializeField] private float _speed;
-
     [SerializeField] private Rigidbody _rb;
+    private Vector3 moveDirectionZ;
 
-    private Vector3 _movement;
-    void Update()
+
+    public void MoveCharacter(Vector3 moveDirection, float moveMagnitude)
     {
-        _movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-
+        moveDirectionZ = moveDirection * _speed;
     }
 
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position +  _movement * _speed * Time.fixedDeltaTime);
+        _rb.MovePosition(_rb.position + moveDirectionZ * Time.fixedDeltaTime);
     }
 }

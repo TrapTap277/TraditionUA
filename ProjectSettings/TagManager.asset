@@ -7,6 +7,7 @@ TagManager:
   - UIObjects
   - UIObjectsToActive
   - LevelPrefab
+  - Roof
   layers:
   - Default
   - TransparentFX
