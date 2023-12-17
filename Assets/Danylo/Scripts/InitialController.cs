@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 
 public class InitialController : MonoBehaviour 
 {
-    //Сюди в інспекторі вкласти всі префаби менеджерів
     [SerializeField] private UIManager uiManager;
     
     private List<IManager> managerPrefabs = new List<IManager>();
