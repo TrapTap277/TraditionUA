@@ -251,4 +251,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIPopupType: 1
   _popup: {fileID: 0}
-  _type: 1

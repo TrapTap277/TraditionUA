@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Base;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Menu : MonoBehaviour, IManager
 {
-  
     public Text languageText;
     public GameObject mainMenu;
     public GameObject settingsMenu;
@@ -15,9 +15,10 @@ public class Menu : MonoBehaviour, IManager
     public GameObject creditsMenu;
     public GameObject tutorialMenu;
 
-    public Button resumeButton;
+    public Button settingsButton;
     public Button newGameButton;
     public Button continueButton;
+    public Button levelChanger;
     public Button exitButton;
 
     private string currentSceneName;
@@ -29,7 +30,8 @@ public class Menu : MonoBehaviour, IManager
 
     private void Start()
     {
-        resumeButton.onClick.AddListener(OpenSettings);
+        settingsButton.onClick.AddListener(OpenSettings);
+        levelChanger.onClick.AddListener(ShowLevelChanger);
         
         currentSceneName = SceneManager.GetActiveScene().name;
 
@@ -45,6 +47,11 @@ public class Menu : MonoBehaviour, IManager
         UpdateMenus();
     }
 
+    private void ShowLevelChanger()
+    {
+        Register.Get<UIManager>().Show(UIPopupType.LevelChanger);
+    }
+
     private void OpenSettings()
     {
         Register.Get<UIManager>().Show(UIPopupType.POPUP1);
@@ -52,7 +59,7 @@ public class Menu : MonoBehaviour, IManager
 
     public void UpdateMenus()
     {
-        resumeButton.gameObject.SetActive(false);
+        settingsButton.gameObject.SetActive(false);
         newGameButton.gameObject.SetActive(false);
         continueButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(false);
@@ -65,7 +72,7 @@ public class Menu : MonoBehaviour, IManager
 
             if (PlayerPrefs.HasKey("LastSaved"))
             {
-                resumeButton.gameObject.SetActive(true);
+                settingsButton.gameObject.SetActive(true);
             }
         }
         else if (currentSceneName == "SettingsMenu")
@@ -114,6 +121,8 @@ public class Menu : MonoBehaviour, IManager
     public void Dispose()
     {
         Debug.Log("I am Disposed");
+        settingsButton.onClick.RemoveAllListeners();
+        levelChanger.onClick.RemoveAllListeners();
     }
 }
 
