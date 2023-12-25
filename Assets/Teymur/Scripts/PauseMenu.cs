@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
     public Button backButton;
 
     public Slider volumeSlider;
+    public Toggle muteToggle;
     public AudioClip[] musicTracks = new AudioClip[8];
     private AudioSource audioSource;
 
@@ -43,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         quitButton.onClick.AddListener(QuitToMainMenu);
         backButton.onClick.AddListener(GoBack);
 
-        // Додайте слухача для зміни значення гучності
+      
         if (volumeSlider != null)
         {
             volumeSlider.onValueChanged.AddListener(ChangeVolume);
@@ -91,11 +92,16 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(true);
     }
 
-    // Додайте функцію для регулювання гучності
+    
     public void ChangeVolume(float volume)
     {
 
         Debug.Log("Гучність: " + volume);
+    }
+
+    public void MuteAllSounds(bool isMuted)
+    {
+        Debug.Log("Mute All Sounds: " + isMuted);
     }
 
     private void PlayRandomTrack()
