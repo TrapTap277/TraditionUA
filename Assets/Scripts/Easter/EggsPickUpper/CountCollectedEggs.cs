@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,16 +12,26 @@ public class CountCollectedEggs : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentCountOfEggsTMP;
     [SerializeField] private TextMeshProUGUI _neddedCountOfEggsTMP;
 
-    private int _neddedCountOfEggs = 10;
+    private int _neddedCountOfEggs;
+    private int _collectedEggs;
 
-    public void Start()
+    private bool _isDone;
+
+    public void FindAllEggs()
     {
         foreach (var egg in GameObject.FindGameObjectsWithTag("Egg"))
         {
             _eggs.Add(egg);
+
+            _neddedCountOfEggs ++;
         }
 
-        _neddedCountOfEggs = _eggs.Count;
+        foreach (var egg in GameObject.FindGameObjectsWithTag("Egg"))
+        {
+            egg.tag = "Untagged";
+        }
+
+
         _neddedCountOfEggsTMP.text = _neddedCountOfEggs.ToString();
 
         ChangeCurrentNumberOfCollectedEggs();
@@ -28,44 +39,42 @@ public class CountCollectedEggs : MonoBehaviour
         for (int i = 0; i < _eggs.Count; i++)
         {
             _eggs[i].GetComponent<EggsPickUpper>().OnPickedUp += CheckCollectedEggs;
-
-        }
-
-    }
-
-    public void Update()
-    {
-        // TODO - This needs to be removed
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CollectAllEggs();
         }
     }
 
     public void CheckCollectedEggs(GameObject currentGameObject)
     {
-
         _eggs.Remove(currentGameObject);
         Destroy(currentGameObject);
-
-        ChangeCurrentNumberOfCollectedEggs();
+        
+        if (!_eggs.Contains(currentGameObject) && _isDone == false)
+        {
+            _isDone = true;
+            _collectedEggs++;
+            ChangeCurrentNumberOfCollectedEggs();
+            StartCoroutine(ChangeIsDone());
+        }
 
         if (_eggs.Count == 0)
         {
-            CollectAllEggs();
+            FinishFirstTask();
         }
     }
 
-    private void CollectAllEggs()
+    private IEnumerator ChangeIsDone()
     {
-        OnCollectedAllEggs?.Invoke();
+        yield return null;
+        _isDone = false;
     }
 
     private void ChangeCurrentNumberOfCollectedEggs()
     {
-        int count = 8 - _eggs.Count;
-        _currentCountOfEggsTMP.text = count.ToString();
+        _currentCountOfEggsTMP.text = _collectedEggs.ToString();
+    }
+
+    private void FinishFirstTask()
+    {
+        OnCollectedAllEggs?.Invoke();
     }
 
     private void OnDestroy()
