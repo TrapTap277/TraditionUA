@@ -11,6 +11,7 @@ public class Dialogue : MonoBehaviour
     public string[] dialogue;
     private int index = 0;
 
+    public GameObject contButton;
     public float wordSpeed;
     public bool playerIsClose;
 
@@ -36,10 +37,12 @@ public class Dialogue : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyDown(KeyCode.Q) && dialoguePanel.activeInHierarchy)
+
+        if (dialogueText.text == dialogue[index]) 
         {
-            RemoveText();
+            contButton.SetActive(true);
         }
+
     }
 
     public void RemoveText()
@@ -60,6 +63,8 @@ public class Dialogue : MonoBehaviour
 
     public void NextLine()
     {
+        contButton.SetActive(false);
+
         if (index < dialogue.Length - 1)
         {
             index++;
@@ -72,7 +77,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -80,7 +85,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
