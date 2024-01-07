@@ -13,7 +13,7 @@ public class Dialogue : MonoBehaviour
 
     public GameObject contButton;
     public float wordSpeed;
-    public bool playerIsClose;
+    public bool playerInTrigger;
 
 
     void Start()
@@ -24,7 +24,7 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
+        if (Input.GetKeyDown(KeyCode.E) && playerInTrigger)
         {
             if (!dialoguePanel.activeInHierarchy)
             {
@@ -81,7 +81,7 @@ public class Dialogue : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerIsClose = true;
+            playerInTrigger = true;
         }
     }
 
@@ -89,7 +89,7 @@ public class Dialogue : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerIsClose = false;
+            playerInTrigger = false;
             RemoveText();
         }
     }
