@@ -5,8 +5,6 @@ using Input = UnityEngine.Input;
 
 public class CinemachineCamerasChangingByPriority : MonoBehaviour
 {
-    public static event Action OnStartedSecondTask;
-
     [SerializeField] private CinemachineVirtualCamera[] _virtualCameras;
 
     private int _currentCameraIndex;
@@ -21,6 +19,8 @@ public class CinemachineCamerasChangingByPriority : MonoBehaviour
 
     private void SwitchCamera()
     {
+        PassingAndTakingTasks passingAndTakingTasks = new PassingAndTakingTasks();
+
         _virtualCameras[_currentCameraIndex].Priority = 0;
         _currentCameraIndex++;
 
@@ -31,6 +31,6 @@ public class CinemachineCamerasChangingByPriority : MonoBehaviour
 
         _virtualCameras[_currentCameraIndex].Priority = 1;
 
-        OnStartedSecondTask?.Invoke();
+        //PassingAndTakingTasks.SingleTon.TakeSecondTask();
     }
 }

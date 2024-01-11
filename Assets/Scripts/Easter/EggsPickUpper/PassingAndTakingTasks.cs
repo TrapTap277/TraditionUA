@@ -3,11 +3,18 @@ using UnityEngine;
 
 public class PassingAndTakingTasks : MonoBehaviour
 {
+    public static PassingAndTakingTasks SingleTon;
+
     public static event Action OnTakenFirstTask;
     public static event Action OnTakenSecondTask;
     public static event Action OnTakenThirdTask;
 
     #region Tasks
+
+    public void Start()
+    {
+        SingleTon = this;
+    }
 
     public void TakeFirstTask() //We can use it with buttons in UI
     {
