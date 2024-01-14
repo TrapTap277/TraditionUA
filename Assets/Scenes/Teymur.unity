@@ -6628,7 +6628,7 @@ MonoBehaviour:
   player: {fileID: 2128126713}
   pickupText: {fileID: 0}
   church: {fileID: 2099675648}
-  catSceneName: CatScene
+  catSceneName: 
 --- !u!4 &1281820256
 Transform:
   m_ObjectHideFlags: 0
