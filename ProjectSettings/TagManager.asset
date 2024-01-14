@@ -8,7 +8,8 @@ TagManager:
   - LevelPrefab
   - Roof
   - Egg
-  - Flowers
+  - UIObjects
+  - UIObjectsToActive
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - PlayerViewer
+  - ObjectsForView
   - 
   - 
   - 
