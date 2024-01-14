@@ -8,6 +8,7 @@ TagManager:
   - LevelPrefab
   - Roof
   - Egg
+  - Flowers
   layers:
   - Default
   - TransparentFX
