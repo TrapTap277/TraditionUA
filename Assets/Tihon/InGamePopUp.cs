@@ -15,6 +15,14 @@ public class Tihon : MonoBehaviour
     {
         popUpButton.onClick.AddListener(PopUping);
     }
+    private void Update()
+    {
+        if (canvas.GetComponent<TaskManager>().taskStarted) {
+            canvas.GetComponent<TaskManager>().taskStarted = false;
+            Debug.Log(1);
+            canvas.GetComponent<TaskManager>().EndOfTask();
+        }
+    }
     void PopUping()
     {
         if(isOpen==false) {
