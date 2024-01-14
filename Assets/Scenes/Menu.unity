@@ -2343,7 +2343,7 @@ MonoBehaviour:
   settingsButton: {fileID: 125015978}
   newGameButton: {fileID: 483386517}
   continueButton: {fileID: 1167162326}
-  levelChanger: {fileID: 0}
+  levelChanger: {fileID: 515059812}
   exitButton: {fileID: 1125087454}
 --- !u!1 &1167162323
 GameObject:

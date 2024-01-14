@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 422da79eb72faa64c9b12a873b1f9301
+  - enabled: 1
+    path: Assets/Scenes/Ihor`sPrototype.unity
+    guid: 17e3b8ede1ddb8c45935cd96f5759cac
   m_configObjects: {}
