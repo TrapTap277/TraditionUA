@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 2514127719846332144}
   - component: {fileID: 4582751245395047387}
   m_Layer: 5
-  m_Name: Level 2
+  m_Name: Level 3
   m_TagString: LevelPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f0af4a5312ef544b476e340697d6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentLevel: 0
   _levelData: {fileID: 11400000, guid: 76abcd292fce75240be41f5d77a5317b, type: 2}
 --- !u!114 &4582751245395047387
 MonoBehaviour:
