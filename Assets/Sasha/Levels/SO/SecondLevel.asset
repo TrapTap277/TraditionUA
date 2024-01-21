@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SecondLevel
   m_EditorClassIdentifier: 
   _sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  _level: 0
+  _level: 2
   _levelName: Second
