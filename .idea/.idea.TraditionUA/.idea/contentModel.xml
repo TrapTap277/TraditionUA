@@ -393,6 +393,10 @@
           </e>
           <e p="UI" t="Include" />
         </e>
+        <e p="Tihon" t="Include">
+          <e p="InGamePopUp.cs" t="Include" />
+          <e p="lvlButton.cs" t="Include" />
+        </e>
         <e p="TutorialInfo" t="Include">
           <e p="Icons" t="Include">
             <e p="Materials" t="Include" />
