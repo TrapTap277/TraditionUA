@@ -1,13 +1,29 @@
 ﻿using System.Collections.Generic;
 using Base;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class InitialController : MonoBehaviour 
+public sealed class InitialController : MonoBehaviour 
 {
+    private InitialController() { }
+
+    private static InitialController _instance;
+
+
     [SerializeField] private UIManager uiManager;
     
     private List<IManager> managerPrefabs = new List<IManager>();
+
+
+    public static InitialController GetInstance()
+    {
+        if (_instance == null)
+        {
+            _instance = new InitialController();
+        }
+        return _instance;
+    }
 
     private void Awake()
     {
