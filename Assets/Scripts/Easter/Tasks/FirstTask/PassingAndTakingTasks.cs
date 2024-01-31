@@ -18,7 +18,6 @@ public class PassingAndTakingTasks : MonoBehaviour
 
     public void TakeFirstTask() //We can use it with buttons in UI
     {
-        Debug.Log("1");
         OnTakenFirstTask?.Invoke();
     }
 

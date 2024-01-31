@@ -11,9 +11,10 @@ public class Shooting : MonoBehaviour
     public List<Sprite> _eggsSprites = new List<Sprite>();
 
     [SerializeField] private LayerMask _eggSecondTask;
-    [SerializeField] private List<GameObject> _eggs = new List<GameObject>();
 
     [SerializeField] private Sprite _defaultSprite;
+
+    private List<GameObject> _eggs = new List<GameObject>();
 
     private int _randomSprite;
     private bool _isStarted;

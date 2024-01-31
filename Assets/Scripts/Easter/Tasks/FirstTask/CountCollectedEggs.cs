@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class CountCollectedEggs : MonoBehaviour
 {
+    public static CountCollectedEggs Singleton;
+
     public static event Action OnCollectedAllEggs;
-    public List<GameObject> _eggs = new List<GameObject>();
+    public static List<GameObject> _eggs = new List<GameObject>();
 
     [SerializeField] private TextMeshProUGUI _currentCountOfEggsTMP;
     [SerializeField] private TextMeshProUGUI _neddedCountOfEggsTMP;
@@ -17,13 +19,15 @@ public class CountCollectedEggs : MonoBehaviour
 
     private bool _isDone;
 
+    public void Start() => Singleton = this;
+
     public void FindAllEggs()
     {
         foreach (var egg in GameObject.FindGameObjectsWithTag("Egg"))
         {
             _eggs.Add(egg);
 
-            _neddedCountOfEggs ++;
+            _neddedCountOfEggs++;
         }
 
         foreach (var egg in GameObject.FindGameObjectsWithTag("Egg"))
@@ -44,21 +48,31 @@ public class CountCollectedEggs : MonoBehaviour
 
     public void CheckCollectedEggs(GameObject currentGameObject)
     {
-        _eggs.Remove(currentGameObject);
-        Destroy(currentGameObject);
-        
-        if (!_eggs.Contains(currentGameObject) && _isDone == false)
+        if (_isDone)
+            return;
+
+        if (_eggs.Contains(currentGameObject))
         {
-            _isDone = true;
-            _collectedEggs++;
-            ChangeCurrentNumberOfCollectedEggs();
-            StartCoroutine(ChangeIsDone());
+            StartCoroutine(DelayedDestroy(currentGameObject));
         }
 
-        if (_eggs.Count == 0)
+        if (_eggs.Count == 0 && FirstTask._isDoneChecker == 3)
         {
             FinishFirstTask();
         }
+    }
+
+    private IEnumerator DelayedDestroy(GameObject obj)
+    {
+        yield return null;
+
+        _eggs.Remove(obj);
+        Destroy(obj);
+
+        _collectedEggs++;
+        ChangeCurrentNumberOfCollectedEggs();
+        _isDone = true; 
+        StartCoroutine(ChangeIsDone());
     }
 
     private IEnumerator ChangeIsDone()
@@ -72,9 +86,15 @@ public class CountCollectedEggs : MonoBehaviour
         _currentCountOfEggsTMP.text = _collectedEggs.ToString();
     }
 
-    private void FinishFirstTask()
+    public void FinishFirstTask()
     {
-        OnCollectedAllEggs?.Invoke();
+        if (_eggs.Count == 0 && FirstTask._isDoneChecker == 3)
+        {
+            OnCollectedAllEggs?.Invoke();
+
+            Debug.Log("Finished");
+        }
+
     }
 
     private void OnDestroy()
