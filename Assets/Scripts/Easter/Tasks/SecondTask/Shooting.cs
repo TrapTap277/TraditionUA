@@ -83,12 +83,12 @@ public class Shooting : MonoBehaviour
     private void OnEnable()
     {
         SecondTask.OnStartedTask += OnStartTask;
-        EasterTimer.OnTimeEnded += OnStart;
+        EasterMessageForSecondTaskMemory.OnTimeEnded += OnStart;
     }  
 
     private void OnDisable()
     {
         SecondTask.OnStartedTask -= OnStartTask;
-        EasterTimer.OnTimeEnded -= OnStart;
+        EasterMessageForSecondTaskMemory.OnTimeEnded -= OnStart;
     }
 }

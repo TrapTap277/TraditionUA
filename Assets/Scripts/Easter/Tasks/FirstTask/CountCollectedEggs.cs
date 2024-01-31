@@ -9,6 +9,7 @@ public class CountCollectedEggs : MonoBehaviour
     public static CountCollectedEggs Singleton;
 
     public static event Action OnCollectedAllEggs;
+    public static event Action OnEnded;
     public static List<GameObject> _eggs = new List<GameObject>();
 
     [SerializeField] private TextMeshProUGUI _currentCountOfEggsTMP;
@@ -91,8 +92,9 @@ public class CountCollectedEggs : MonoBehaviour
         if (_eggs.Count == 0 && FirstTask._isDoneChecker == 3)
         {
             OnCollectedAllEggs?.Invoke();
+            OnEnded?.Invoke();
 
-            Debug.Log("Finished");
+            FirstTask._isDoneChecker = 4;
         }
 
     }

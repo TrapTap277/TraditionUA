@@ -3,7 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class EasterTimer : MonoBehaviour
+public class EasterMessageForSecondTaskMemory : MonoBehaviour
 {
     public static event Action OnTimeEnded;
 

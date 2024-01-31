@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using Random = UnityEngine.Random;
 
 public class FirstTask : MonoBehaviour
 {
+    public static event Action OnStartedTimer;
+    public static event Action<float> OnGivenMoreTime;
+
     [SerializeField] private GameObject _eggPrefab;
     [SerializeField] private List<Sprite> _eggsSpritesPrefabs = new();
     [SerializeField] private List<GameObject> _eggsCounterChecker = new();
@@ -12,27 +16,55 @@ public class FirstTask : MonoBehaviour
 
     public static int _isDoneChecker = 0;
 
+    private Coroutine _timerCoroutine;
+    private bool _isStarted;
+
+    public void Update()
+    {
+        if (_isDoneChecker <= 3 && _isStarted)
+            OnStartedTimer?.Invoke();
+    }
+
     public void TakeFirstTask()
     {
         int number = 0;
+        float time = 0;
 
-        if (_isDoneChecker == 0)
-            number = 34;
+        if (_isDoneChecker <= 2 && CountCollectedEggs._eggs.Count == 0)
+        {
+            if (_isDoneChecker == 0)
+            {
+                number = 34;
+                time = 15;
+            }
 
-        if (_isDoneChecker == 1)
-            number = 22;
 
-        if (_isDoneChecker == 2)
-            number = 0;
+            if (_isDoneChecker == 1)
+            {
+                number = 22;
+                time = 30;
+            }
+
+
+            if (_isDoneChecker == 2)
+            {
+                number = 0;
+                time = 60;
+            }
+
+            if (_timerCoroutine == null)
+            {
+                _timerCoroutine = StartCoroutine(TimerForStartingFirstTask(_eggsSpritesPrefabs, number, time));
+            }
+        }
 
         if (_isDoneChecker == 3)
             CountCollectedEggs.Singleton.FinishFirstTask();
 
-        if (_isDoneChecker <= 2 && CountCollectedEggs._eggs.Count == 0)
-            StartCoroutine(TimerForStartingFirstTask(_eggsSpritesPrefabs, number));
+        _isStarted = true;
     }
 
-    private IEnumerator TimerForStartingFirstTask(List<Sprite> eggsSprites, int number)
+    private IEnumerator TimerForStartingFirstTask(List<Sprite> eggsSprites, int number, float time)
     {
         yield return new WaitForSeconds(1f);
 
@@ -60,8 +92,30 @@ public class FirstTask : MonoBehaviour
         {
             PassingAndTakingTasks.SingleTon.TakeFirstTask();
         }
+
+        OnGivenMoreTime?.Invoke(time);
+
+        yield return new WaitForSeconds(1);
+
+        OnStartedTimer?.Invoke();
+
+        _timerCoroutine = null;
     }
 
-    private void OnEnable() => PassingAndTakingTasks.OnTakenFirstTask += TakeFirstTask;
-    private void OnDisable() => PassingAndTakingTasks.OnTakenFirstTask -= TakeFirstTask;
+    public void Lose()
+    {
+        Debug.Log("You Lost... :( ");
+    }
+
+    private void OnEnable()
+    {
+        PassingAndTakingTasks.OnTakenFirstTask += TakeFirstTask;
+        EasterTimer.OnLost += Lose;
+    }
+
+    private void OnDisable()
+    {
+        PassingAndTakingTasks.OnTakenFirstTask -= TakeFirstTask;
+        EasterTimer.OnLost -= Lose;
+    }
 }
