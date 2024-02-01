@@ -11,19 +11,6 @@ public class SoundScript : MonoBehaviour
     [SerializeField] private Transform SoundParent;
     public int SettingsSoundVolume;
 
-    private bool _pause = false;
-
-    private void Update() 
-    {
-        if(_pause != soundManager.pause)
-        {
-            _pause = soundManager.pause;
-            
-
-        }
-        
-    }
-
 
     public void PlaySound(int SoundIndex)
     {

@@ -18,7 +18,7 @@ public class SoundDestroyer : MonoBehaviour
     {
         float vol = 0.01f * soundScript.SettingsSoundVolume/100 * _volume;
         audioSource.volume = vol;
-        if (!audioSource.isPlaying && soundManager.pause == false)
+        if (!audioSource.isPlaying)
         {
             Destroy(SoundObj);
         }

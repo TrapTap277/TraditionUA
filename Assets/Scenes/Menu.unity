@@ -6445,7 +6445,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Music.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 9829612e852acec4aa9eac762d3f21bc, type: 3}
+      objectReference: {fileID: 8300000, guid: 5ad8b49fb79b3064a90221987f2478c4, type: 3}
     - target: {fileID: 1107018364050183838, guid: c0c29ff70818243449e2829ed601315b,
         type: 3}
       propertyPath: Music.Array.data[1]

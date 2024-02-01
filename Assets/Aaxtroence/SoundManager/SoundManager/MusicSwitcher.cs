@@ -20,6 +20,9 @@ public class MusicSwitcher : MonoBehaviour
     private float _tick = 0.05f;
     private float _time = 0;
     [SerializeField] private SoundManager soundManager;
+
+    private bool _pause = false;
+
     void Start()
     {
         if(PlayOnStart)
@@ -43,6 +46,21 @@ public class MusicSwitcher : MonoBehaviour
         }
         audioSource1.volume = SettingsMusicVolume/10000 * AS1VolumePercentage;
         audioSource2.volume = SettingsMusicVolume/10000 * AS2VolumePercentage;
+
+        if(_pause != soundManager.pause)
+        {
+            _pause = soundManager.pause;
+            if(_pause)
+            {
+                audioSource1.pitch = 0;
+                audioSource2.pitch = 0;
+            }
+            else
+            {
+                audioSource1.pitch = 1;
+                audioSource2.pitch = 1;
+            }
+        }
     }
 
     private void _Tick()
