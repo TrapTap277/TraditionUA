@@ -1957,6 +1957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529090569}
   - component: {fileID: 529090570}
+  - component: {fileID: 529090571}
   m_Layer: 0
   m_Name: MenuData
   m_TagString: Untagged
@@ -1996,6 +1997,20 @@ MonoBehaviour:
   dayTime: N/A
   day: 0
   _time: 
+--- !u!114 &529090571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529090568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39373ca3906b13408ef2be79ccb7ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 1119974702}
+  _loadScreen: 1
 --- !u!1 &554485757
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,7 +4059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1119974703
 RectTransform:
   m_ObjectHideFlags: 0
