@@ -50,6 +50,5 @@ public enum EggSprites
     Egg38,
     Egg39,
     Egg40,
-    Egg41,
-    Egg42,
+    Egg41
 }
