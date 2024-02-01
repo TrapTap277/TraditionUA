@@ -2,7 +2,7 @@
 
 public class RoofControl : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _objectForFade;
+    private SpriteRenderer _objectForFade;
     private const float _normalState = 1f;
     private const float _halfFaded = 0.5f;
 
