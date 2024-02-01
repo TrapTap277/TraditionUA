@@ -43,5 +43,3 @@ public class SecondTask : MonoBehaviour
 
     private void OnDisable() => PassingAndTakingTasks.OnTakenSecondTask -= OnSecondTask;
 }
-
-//15, 13.33, 11.9, 10.5

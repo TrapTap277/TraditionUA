@@ -7,7 +7,6 @@ public class EasterSpriteEnum : MonoBehaviour
 
 public enum EggSprites
 {
-    None,
     Default,
     Egg,
     Egg1,
