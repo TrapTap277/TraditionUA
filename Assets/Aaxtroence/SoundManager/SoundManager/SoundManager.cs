@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour, IManager
 {
     public AudioClip[] Music;
     public AudioClip[] Sounds;
@@ -43,6 +43,10 @@ public class SoundManager : MonoBehaviour
     {
         soundScript.SettingsSoundVolume = volume;
     }
+
+
+    public void Init(){}
+    public void Dispose(){}
 }
 
 public enum Music
