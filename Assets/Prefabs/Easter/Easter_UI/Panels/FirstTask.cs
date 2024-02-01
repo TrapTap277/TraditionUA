@@ -13,6 +13,7 @@ public class FirstTask : MonoBehaviour
     [SerializeField] private List<Sprite> _eggsSpritesPrefabs = new();
     [SerializeField] private List<GameObject> _eggsCounterChecker = new();
     [SerializeField] private CountCollectedEggs _countCollectedEggs;
+    [SerializeField] private List<Transform> _randomPositions;
 
     public static int _isDoneChecker = 0;
 
@@ -35,14 +36,14 @@ public class FirstTask : MonoBehaviour
             if (_isDoneChecker == 0)
             {
                 number = 34;
-                time = 15;
+                time = 30;
             }
 
 
             if (_isDoneChecker == 1)
             {
                 number = 22;
-                time = 30;
+                time = 45;
             }
 
 
@@ -70,14 +71,14 @@ public class FirstTask : MonoBehaviour
 
         for (int i = 0; i < eggsSprites.Count - number; i++)
         {
+
             float randomX = Random.Range(8, -20);
             float positionY = 1.0f;
             float randomZ = Random.Range(-10, 19);
             int randomSprite = Random.Range(1, eggsSprites.Count - number);
+            int randomPosition = Random.Range(0, _randomPositions.Count);
 
-            Vector3 randomPositions = new Vector3(randomX, positionY, randomZ);
-
-            GameObject newEgg = Instantiate(_eggPrefab, randomPositions,
+            GameObject newEgg = Instantiate(_eggPrefab, _randomPositions[randomPosition].transform.position,
                 Quaternion.Euler(40.0f, 0.0f, 0.0f));
             newEgg.GetComponent<SpriteRenderer>().sprite = eggsSprites[randomSprite];
 
