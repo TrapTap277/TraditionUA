@@ -15,7 +15,7 @@ public class MenuData : MonoBehaviour
     public int day;
     public string _time;
 
-    private void Awake()
+    private void Start()
     {
         ReadDataFromFile();
     }
