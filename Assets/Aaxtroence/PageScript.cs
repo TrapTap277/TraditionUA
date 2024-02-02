@@ -20,6 +20,7 @@ public class PageScript : MonoBehaviour
     [SerializeField] private int localPage;
     //
     [SerializeField] private GameObject GalleryScreen;
+    [SerializeField] private GameObject PickLevelScreen;
     //
     [SerializeField] private Button[] Pictures;
     [SerializeField] private TMP_Text[] PictureTexts;
@@ -29,14 +30,19 @@ public class PageScript : MonoBehaviour
     //
     [SerializeField] private TMP_Text leftPageText;
     [SerializeField] private TMP_Text rightPageText;
-
+    //Pick Level Screen Buttons
+    [SerializeField] private Button PLSPlayButton;
+    [SerializeField] private Button PLSCancelButton;
+    [SerializeField] private Button PLSCancelBG;
+    //PLS Text
+    [SerializeField] private TMP_Text PLSText;
     
+    private int SelectedLevel;
 
     private void Start() 
     {
-        leftButton.onClick.AddListener(LeftButton);
-        rightButton.onClick.AddListener(RightButton);
-        backButton.onClick.AddListener(BackButton);
+        Subscribe();
+        PickLevelScreenSubscribe();
 
         level = menuData.level + 1;
         totalPages = (int)Math.Ceiling((float)level / 8);
@@ -44,54 +50,35 @@ public class PageScript : MonoBehaviour
 
         UpdatePage();
 
-        leftButton.gameObject.SetActive(false);
-        if (localPage>=totalPages)
-        {
-            rightButton.gameObject.SetActive(false);
-        }
+        
 
+    }
+    private void OnDestroy() 
+    {
+        UnSubscribe();
     }
 
     private void LeftButton()
     {
         Click();
-        
-        if (localPage>1)
-        {
-            localPage-=1;
-        }
-        
-        if (localPage<=1)
-        {
-            leftButton.gameObject.SetActive(false);
-        }
-
-        rightButton.gameObject.SetActive(true);
-
+        localPage-=1;
         UpdatePage();
     }
 
     private void RightButton()
     {
         Click();
-        
-        if (localPage<totalPages)
-        {
-            localPage++;
-        }
-        
-        if(localPage>= totalPages)
-        {
-            rightButton.gameObject.SetActive(false);
-        }
-
-        leftButton.gameObject.SetActive(true);
-
+        localPage++;
         UpdatePage();
     }
 
     private void UpdatePage()
     {
+        
+        leftButton.gameObject.SetActive(!(localPage<=1));
+        rightButton.gameObject.SetActive(!(localPage>=totalPages));
+
+
         leftPageText.text = (localPage*2-1).ToString();
         rightPageText.text = (localPage*2).ToString();
 
@@ -112,8 +99,64 @@ public class PageScript : MonoBehaviour
         GalleryScreen.SetActive(false);
     }
 
+    private void PictureButton(int i)
+    {
+        Click();
+        int PageIndex = (8*(localPage-1)+i+1);
+        PickLevelScreen.SetActive(true);
+        SelectedLevel = PageIndex;
+        //
+        PLSText.text = PageIndex.ToString();
+        //
+    }
+    
+    private void PLSPlay()
+    {
+        // Start Scene "SelectedLevel"
+    }
+    private void HidePLS()
+    {
+        Click();
+        PickLevelScreen.SetActive(false);
+    }
+
     private void Click()
     {
         initialController.soundManager.PlaySound(Sound.Click);
+    }
+
+    private void Subscribe()
+    {
+        leftButton.onClick.AddListener(LeftButton);
+        rightButton.onClick.AddListener(RightButton);
+        backButton.onClick.AddListener(BackButton);
+        for (int i = 0; i < Pictures.Length ; i++)
+        {
+            int index = i;
+            Pictures[i].onClick.AddListener(() => PictureButton(index));
+        }
+    }
+    private void UnSubscribe()
+    {
+        leftButton.onClick.RemoveListener(LeftButton);
+        rightButton.onClick.RemoveListener(RightButton);
+        backButton.onClick.RemoveListener(BackButton);
+        for (int i = 0; i < Pictures.Length ; i++)
+        {
+            int index = i;
+            Pictures[i].onClick.RemoveListener(() => PictureButton(index));
+        }
+    }
+    private void PickLevelScreenSubscribe()
+    {
+        PLSPlayButton.onClick.AddListener(PLSPlay);
+        PLSCancelButton.onClick.AddListener(HidePLS);
+        PLSCancelBG.onClick.AddListener(HidePLS);
+    }
+    private void PickLevelScreenUnSubscribe()
+    {
+        PLSPlayButton.onClick.RemoveListener(PLSPlay);
+        PLSCancelButton.onClick.RemoveListener(HidePLS);
+        PLSCancelBG.onClick.RemoveListener(HidePLS);
     }
 }
