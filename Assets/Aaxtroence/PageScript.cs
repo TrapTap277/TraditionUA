@@ -8,7 +8,7 @@ using TMPro;
 public class PageScript : MonoBehaviour
 {
     private int level;
-
+    [SerializeField] private Menu menu;
     [SerializeField] private InitialController initialController;
     [SerializeField] private MenuData menuData;
     //
@@ -96,7 +96,7 @@ public class PageScript : MonoBehaviour
     private void BackButton()
     {
         Click();
-        GalleryScreen.SetActive(false);
+        menu.Transition(() => GalleryScreen.SetActive(false));
     }
 
     private void PictureButton(int i)
