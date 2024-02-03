@@ -32,6 +32,10 @@ public class SecondTask : MonoBehaviour
 
     public void OnSecondTask()
     {
+        Sequence fade = DOTween.Sequence();
+
+        fade.Append(EasterTimer.Singleton.timerText.DOFade(1, 1f));
+
         if (!_isStarted)
         {
             CinemachineCamerasChangingByPriority.Singleton.SwitchCamera();
@@ -64,11 +68,11 @@ public class SecondTask : MonoBehaviour
 
         _usedPositions.Clear();
 
-        if (Shooting.Singleton != null && Shooting.Singleton._eggsSprites.Count > 0 && IsDone == false)
+        if (SecondTaskManager.Singleton != null && SecondTaskManager.Singleton._eggsSprites.Count > 0 && IsDone == false)
         {
             for (int i = 0; i < _countOfEggs; i++)
             {
-                _randomSprite = Random.Range(0, Shooting.Singleton._eggsSprites.Count);
+                _randomSprite = Random.Range(0, SecondTaskManager.Singleton._eggsSprites.Count);
 
                 Transform randomPosition = GetRandomUnusedPosition();
 
@@ -76,7 +80,7 @@ public class SecondTask : MonoBehaviour
 
                 GameObject newEgg = Instantiate(_eggPrefab, randomPosition.position, Quaternion.identity);
                 newEgg.GetComponent<SpriteRenderer>().sortingOrder = 1;
-                Shooting.Singleton.ChangeRandomSprite(newEgg, _randomSprite);
+                SecondTaskManager.Singleton.ChangeRandomSprite(newEgg, _randomSprite);
                 newEgg.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             }
 

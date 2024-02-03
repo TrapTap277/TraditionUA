@@ -9,6 +9,7 @@ public class PassingAndTakingTasks : MonoBehaviour
     public static event Action OnTakenSecondTask;
     public static event Action OnTakenThirdTask;
 
+    public static int SequenceOfTasks = 0;
     #region Tasks
 
     public void Start()
@@ -37,9 +38,29 @@ public class PassingAndTakingTasks : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (SequenceOfTasks == 0)
         {
-            TakeSecondTask();
+            if (other.gameObject.tag == "Player")
+            {
+                TakeFirstTask();
+            }
+        }
+
+        else if (SequenceOfTasks == 1)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                TakeSecondTask();
+            }
+
+        }
+
+        else if (SequenceOfTasks == 2)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                TakeThirdTask();
+            }
         }
     }
 }

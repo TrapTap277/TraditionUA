@@ -34,7 +34,7 @@ public class EasterMessageForSecondTaskMemory : MonoBehaviour
         _timerText.text = "";
     }
 
-    private void OnEnable() => Shooting.OnTimerStarted += TimerStart;
+    private void OnEnable() => SecondTaskManager.OnTimerStarted += TimerStart;
 
-    private void OnDisable() => Shooting.OnTimerStarted -= TimerStart;
+    private void OnDisable() => SecondTaskManager.OnTimerStarted -= TimerStart;
 }

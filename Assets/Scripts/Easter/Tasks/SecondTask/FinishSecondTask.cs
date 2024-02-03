@@ -34,11 +34,11 @@ public class FinishSecondTask : MonoBehaviour
 
     private void OnEnable()
     {
-        Shooting.OnFinishedTask += OnFinishSecondTask;
+        SecondTaskManager.OnFinishedTask += OnFinishSecondTask;
     }
 
     private void OnDisable()
     {
-        Shooting.OnFinishedTask -= OnFinishSecondTask;
+        SecondTaskManager.OnFinishedTask -= OnFinishSecondTask;
     }
 }

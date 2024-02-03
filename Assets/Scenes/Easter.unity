@@ -9263,7 +9263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 100917460}
   _stick: {fileID: 2082762609}
-  _checkMarkUI: {fileID: 0}
+  _checkMarkUI: {fileID: 1007110948}
 --- !u!4 &911351060
 Transform:
   m_ObjectHideFlags: 0
@@ -15812,7 +15812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 962514938}
-  CountdownTime: 15
 --- !u!4 &1561553248
 Transform:
   m_ObjectHideFlags: 0
@@ -16657,6 +16656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eggsSprites:
+  - {fileID: 21300000, guid: a099aefe2e9c0ea44b4e6de173fc42ef, type: 3}
   - {fileID: 21300000, guid: 33fee3d09220b9b41bd1b9714a931acc, type: 3}
   - {fileID: 21300000, guid: c1240004a0fd38e4981a6d2eb4fda79f, type: 3}
   - {fileID: 21300000, guid: 82b4c48625a8e7848b0c9884379ee7a3, type: 3}
@@ -17213,8 +17213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff93ca99fcf0294191070304296345f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentCountOfEggsTMP: {fileID: 792581251}
-  _neddedCountOfEggsTMP: {fileID: 1733055153}
+  CurrentCountOfEggsTMP: {fileID: 792581251}
+  NeddedCountOfEggsTMP: {fileID: 1733055153}
+  NeddedCountOfEggs: 0
+  CollectedEggs: 0
 --- !u!4 &1719469053
 Transform:
   m_ObjectHideFlags: 0
@@ -21867,7 +21869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a79e015f3ef379498e892217a520b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
+  _speed: 30
   _rb: {fileID: 2128126716}
 --- !u!54 &2128126716 stripped
 Rigidbody:

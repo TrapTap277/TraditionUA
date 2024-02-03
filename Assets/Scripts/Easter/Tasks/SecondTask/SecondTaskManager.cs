@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class Shooting : MonoBehaviour
+public class SecondTaskManager : MonoBehaviour
 {
-    public static Shooting Singleton;
+    public static SecondTaskManager Singleton;
 
     public static event Action OnTimerStarted;
     public static event Action OnFinishedTask;
@@ -32,7 +32,7 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
-        Singleton = this;   
+        Singleton = this;
     }
 
     void Update()
@@ -58,7 +58,7 @@ public class Shooting : MonoBehaviour
                         {
                             _checkMarkButton.onClick.AddListener(() =>
                             {
-                                if (hit.transform != null) 
+                                if (hit.transform != null)
                                 {
                                     easterCurrentSprite.CheckSprite(spriteRenderer, easterCurrentSprite.mySpriteType);
 
@@ -87,7 +87,7 @@ public class Shooting : MonoBehaviour
                 _isDone = true;
             }
 
-            if(_eggsFirstLevel.Count == 0 && _isStartedSecondTask == true && _isDone2 == false)
+            if (_eggsFirstLevel.Count == 0 && _isStartedSecondTask == true && _isDone2 == false)
             {
                 StartCoroutine(SecondLevelCompleted());
 
@@ -200,12 +200,12 @@ public class Shooting : MonoBehaviour
         }
         _isStarted = true;
     }
-        
+
     private void OnEnable()
     {
         SecondTask.OnStartedTask += OnStartTask;
         EasterMessageForSecondTaskMemory.OnTimeEnded += OnStart;
-    }  
+    }
 
     private void OnDisable()
     {

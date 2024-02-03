@@ -12,15 +12,21 @@ public class CountCollectedEggs : MonoBehaviour
     public static event Action OnEnded;
     public static List<GameObject> _eggs = new List<GameObject>();
 
-    [SerializeField] private TextMeshProUGUI _currentCountOfEggsTMP;
-    [SerializeField] private TextMeshProUGUI _neddedCountOfEggsTMP;
+    public TextMeshProUGUI CurrentCountOfEggsTMP;
+    public TextMeshProUGUI NeddedCountOfEggsTMP;
 
-    private int _neddedCountOfEggs;
-    private int _collectedEggs;
+    public int NeddedCountOfEggs;
+    public int CollectedEggs;
 
     private bool _isDone;
 
     public void Start() => Singleton = this;
+
+    public void Assign()
+    {
+        CurrentCountOfEggsTMP.text = CollectedEggs.ToString();
+        NeddedCountOfEggsTMP.text = NeddedCountOfEggs.ToString();
+    }
 
     public void FindAllEggs()
     {
@@ -28,7 +34,7 @@ public class CountCollectedEggs : MonoBehaviour
         {
             _eggs.Add(egg);
 
-            _neddedCountOfEggs++;
+            NeddedCountOfEggs++;
         }
 
         foreach (var egg in GameObject.FindGameObjectsWithTag("Egg"))
@@ -37,7 +43,7 @@ public class CountCollectedEggs : MonoBehaviour
         }
 
 
-        _neddedCountOfEggsTMP.text = _neddedCountOfEggs.ToString();
+        NeddedCountOfEggsTMP.text = NeddedCountOfEggs.ToString();
 
         ChangeCurrentNumberOfCollectedEggs();
 
@@ -70,7 +76,7 @@ public class CountCollectedEggs : MonoBehaviour
         _eggs.Remove(obj);
         Destroy(obj);
 
-        _collectedEggs++;
+        CollectedEggs++;
         ChangeCurrentNumberOfCollectedEggs();
         _isDone = true; 
         StartCoroutine(ChangeIsDone());
@@ -84,7 +90,7 @@ public class CountCollectedEggs : MonoBehaviour
 
     private void ChangeCurrentNumberOfCollectedEggs()
     {
-        _currentCountOfEggsTMP.text = _collectedEggs.ToString();
+        CurrentCountOfEggsTMP.text = CollectedEggs.ToString();
     }
 
     public void FinishFirstTask()
@@ -95,6 +101,8 @@ public class CountCollectedEggs : MonoBehaviour
             OnEnded?.Invoke();
 
             FirstTask._isDoneChecker = 4;
+
+            PassingAndTakingTasks.SequenceOfTasks = 1;
         }
 
     }

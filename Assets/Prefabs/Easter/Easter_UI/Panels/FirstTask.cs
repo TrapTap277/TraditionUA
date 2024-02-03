@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -36,21 +37,21 @@ public class FirstTask : MonoBehaviour
             if (_isDoneChecker == 0)
             {
                 number = 34;
-                time = 30;
+                time = 31;
             }
 
 
             if (_isDoneChecker == 1)
             {
                 number = 22;
-                time = 45;
+                time = 46;
             }
 
 
             if (_isDoneChecker == 2)
             {
                 number = 0;
-                time = 60;
+                time = 61;
             }
 
             if (_timerCoroutine == null)
@@ -67,14 +68,10 @@ public class FirstTask : MonoBehaviour
 
     private IEnumerator TimerForStartingFirstTask(List<Sprite> eggsSprites, int number, float time)
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < eggsSprites.Count - number; i++)
         {
-
-            float randomX = Random.Range(8, -20);
-            float positionY = 1.0f;
-            float randomZ = Random.Range(-10, 19);
             int randomSprite = Random.Range(1, eggsSprites.Count - number);
             int randomPosition = Random.Range(0, _randomPositions.Count);
 
@@ -105,18 +102,46 @@ public class FirstTask : MonoBehaviour
 
     public void Lose()
     {
-        Debug.Log("You Lost... :( ");
+        Sequence fade = DOTween.Sequence();
+
+        EasterTimer.Singleton.timerText.text = "Game Over";
+
+        fade.Append(EasterTimer.Singleton.timerText.DOFade(1, 1f));
+        fade.Append(EasterTimer.Singleton.timerText.DOFade(0, 1f));
+
+        ResetFirstTask();
+    }
+
+    public void Win()
+    {
+        EasterTimer.Singleton.timerText.text = "Round Completed";
+    }
+
+    public void ResetFirstTask()
+    {
+        _isDoneChecker = 0;
+        CountCollectedEggs._eggs.Clear();
+        CountCollectedEggs.Singleton.CollectedEggs = 0;
+        CountCollectedEggs.Singleton.NeddedCountOfEggs = 0;
+        CountCollectedEggs.Singleton.Assign();
+
+        for (int i = 0; i < _eggsCounterChecker.Count; i++)
+        {
+            Destroy(_eggsCounterChecker[i]);
+        }
     }
 
     private void OnEnable()
     {
         PassingAndTakingTasks.OnTakenFirstTask += TakeFirstTask;
         EasterTimer.OnLost += Lose;
+        EasterTimer.OnWin += Win;
     }
 
     private void OnDisable()
     {
         PassingAndTakingTasks.OnTakenFirstTask -= TakeFirstTask;
         EasterTimer.OnLost -= Lose;
+        EasterTimer.OnWin -= Win;
     }
 }

@@ -41,7 +41,7 @@ public class EasterCurrentSprite : MonoBehaviour
         {
             _originalColor = spriteRenderer.color;
             gameObject.GetComponent<BoxCollider>().enabled = false;
-            Shooting.Singleton.EggsRemover(this.gameObject);
+            SecondTaskManager.Singleton.EggsRemover(this.gameObject);
 
 
             colorChanging.Append(spriteRenderer.DOFade(END_VALUE, TIME_TO_CHANGE_COLOR))
