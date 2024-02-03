@@ -39,7 +39,7 @@ public class PassingAndTakingTasks : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            TakeSecondTask();
+            TakeFirstTask();
         }
     }
 }
