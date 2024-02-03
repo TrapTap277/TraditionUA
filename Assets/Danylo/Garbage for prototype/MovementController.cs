@@ -7,7 +7,7 @@ public class MovementController : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Rigidbody _rb;
-    private bool _canMove;
+    [SerializeField] private bool _canMove;
     private Vector3 moveDirectionZ;
 
     private void Start()
