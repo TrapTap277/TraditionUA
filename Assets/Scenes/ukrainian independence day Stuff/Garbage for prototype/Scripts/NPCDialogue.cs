@@ -5,7 +5,7 @@ using TMPro;
 
 public class NPCDialogue : MonoBehaviour
 {
-    [SerializeField] private GameObject _dialoguePanel;
+    [SerializeField] private GameObject _dialogueWindow;
     [SerializeField] private TMP_Text _dialogueText;
     [SerializeField] private bool _isPlayerCanMove;
     private MovementController _movementController;
@@ -15,11 +15,11 @@ public class NPCDialogue : MonoBehaviour
     private int currentLine = 0;
 
     [SerializeField] private float _letterSpeed = 0.05f;
-    [SerializeField] private float DialogAwaitTime = 0.05f; 
+    [SerializeField] private float DialogAwaitTime = 2; 
 
     private void Start()
     {
-        _dialoguePanel.SetActive(false);
+        _dialogueWindow.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,13 +45,13 @@ public class NPCDialogue : MonoBehaviour
 
     private void ShowDialogue()
     {
-        _dialoguePanel.SetActive(true);
+        _dialogueWindow.SetActive(true);
         StartCoroutine(DisplayDialogue());
     }
 
     private void HideDialogue()
     {
-        _dialoguePanel.SetActive(false);
+        _dialogueWindow.SetActive(false);
         StopAllCoroutines(); 
     }
 
@@ -68,7 +68,7 @@ public class NPCDialogue : MonoBehaviour
         currentLine++;
 
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(DialogAwaitTime);
 
         
         if (currentLine < _dialogueLines.Length)
