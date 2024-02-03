@@ -4,19 +4,18 @@ using Input = UnityEngine.Input;
 
 public class CinemachineCamerasChangingByPriority : MonoBehaviour
 {
+    public static CinemachineCamerasChangingByPriority Singleton;
+
     [SerializeField] private CinemachineVirtualCamera[] _virtualCameras;
 
     private int _currentCameraIndex;
 
-    public void Update()
+    public void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchCamera();
-        }
+        Singleton = this;
     }
 
-    private void SwitchCamera()
+    public void SwitchCamera()
     {
         _virtualCameras[_currentCameraIndex].Priority = 0;
         _currentCameraIndex++;
@@ -28,6 +27,6 @@ public class CinemachineCamerasChangingByPriority : MonoBehaviour
 
         _virtualCameras[_currentCameraIndex].Priority = 1;
 
-        PassingAndTakingTasks.SingleTon.TakeSecondTask();
+        //PassingAndTakingTasks.SingleTon.TakeSecondTask(); //Need to remove
     }
 }
