@@ -113,6 +113,7 @@ public class PageScript : MonoBehaviour
     
     private void PLSPlay()
     {
+        initialController.soundManager.PlayMusic(Music.None,false);
         SceneManager.LoadScene(SelectedLevel);
     }
     private void HidePLS()

@@ -51,6 +51,7 @@ public class Menu : MonoBehaviour
     }
     private void StartGame()
     {
+        initialController.soundManager.PlayMusic(Music.None,false);
         SceneManager.LoadScene(menuData.level+1);
     }
     //Settings
