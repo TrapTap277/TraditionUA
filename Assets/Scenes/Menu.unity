@@ -4660,7 +4660,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 328.3
+  m_fontSize: 328.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7651,6 +7651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 0.4
   initialController: {fileID: 511396600}
+  menuData: {fileID: 529090570}
   playButton: {fileID: 483386517}
   settingsButton: {fileID: 1377424708}
   galleryButton: {fileID: 1165963890}

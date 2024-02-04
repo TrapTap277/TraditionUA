@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PageScript : MonoBehaviour
 {
@@ -112,7 +113,7 @@ public class PageScript : MonoBehaviour
     
     private void PLSPlay()
     {
-        // Start Scene "SelectedLevel"
+        SceneManager.LoadScene(SelectedLevel);
     }
     private void HidePLS()
     {

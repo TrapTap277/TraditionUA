@@ -4,12 +4,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     [SerializeField] private float transitionTime;
 
     [SerializeField] private InitialController initialController;
+    [SerializeField] private MenuData menuData;
     //Buttons
     [SerializeField] private Button playButton;
     [SerializeField] private Button settingsButton;
@@ -45,7 +47,11 @@ public class Menu : MonoBehaviour
     //Play
     private void PlayButton()
     {
-        
+        StartGame();
+    }
+    private void StartGame()
+    {
+        SceneManager.LoadScene(menuData.level+1);
     }
     //Settings
     private void SettingsButton()
