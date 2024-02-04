@@ -19,32 +19,39 @@ public class TaskManager : MonoBehaviour
         prize.transform.position = new Vector2(367, 251);
         prize.color = new Color(255,255, 255, 0);
     }
+
     void Update()
     {
         if (startEvent == "key")
         {
-            if(Input.GetKeyDown(key)) {
+            if (Input.GetKeyDown(key))
+            {
                 taskStarted = true;
             }
         }
     }
-    void OnTriggerEnter(GameObject trigger)
-    {
-        if(startEvent == "trigger"){
-            taskStarted = true;
-        }
-    }
-    void OnTriggerEnter2D(GameObject trigger)
+
+    void OnTriggerEnter(Collider other)
     {
         if (startEvent == "trigger")
         {
             taskStarted = true;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (startEvent == "trigger")
+        {
+            taskStarted = true;
+        }
+    }
+
     public void EndOfTask()
     {
         taskEnded = true;
-        if(taskEnded) {
+        if (taskEnded)
+        {
             prize.color = new Color(255, 255, 255, 255);
         }  
     }
