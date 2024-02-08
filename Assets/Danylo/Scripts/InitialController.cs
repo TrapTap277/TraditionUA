@@ -1,34 +1,38 @@
 ﻿using System.Collections.Generic;
 using Base;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public sealed class InitialController : MonoBehaviour
 {
+    private InitialController() { }
+
+
     private static InitialController _instance;
-    private static bool _isInstanceActive = false;
+    //private static bool _isInstanceActive = false;
 
     [SerializeField] private UIManager uiManager;
     public SoundManager soundManager;
 
     private List<IManager> managerPrefabs = new List<IManager>();
 
-    public static InitialController Instance => _instance;
+    //public static InitialController Instance => _instance;
 
-    private InitialController()
+    //private InitialController()
+    //{
+    //}
+
+    public static InitialController GetInstance()//Don`t Work, why?
     {
+        if (_instance == null)
+        {
+            _instance = new InitialController();
+        }
+        return _instance;
     }
 
     private void Awake()
     {
-        if (_isInstanceActive)
-        {
-            enabled = false;
-            return;
-        }
-
-        _isInstanceActive = true;
-        _instance = this;
-
         DontDestroyOnLoad(gameObject);
         RegisterManagers();
         InitializeManagers();
@@ -59,7 +63,7 @@ public sealed class InitialController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _isInstanceActive = false;
+        //_isInstanceActive = false;
         DisposeManagers();
     }
 }
