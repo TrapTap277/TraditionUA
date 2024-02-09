@@ -25,7 +25,6 @@ public class PickUpUI : MonoBehaviour
 
     private void OnEnable()
     {
-        
         PickingThingsUp.OnPickedUpByPlayer += OnPickedUpByPlayer;
         PickingThingsUp.OnPickedUpByBunny += OnPickedUpByBunny;
     }

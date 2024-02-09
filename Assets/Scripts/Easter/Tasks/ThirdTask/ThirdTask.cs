@@ -1,63 +1,60 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class ThirdTask : MonoBehaviour
 {
+    public static int AddNewCarrotsCount;
+
     [SerializeField] private GameObject _carrot;
 
-    private const float _POSITION_Y = 1.0f;
-    private const float _QUATERNION_ROTATION = 15.0f;
-    private const float _TIME_TO_CARROT_GAME = 1.0f;
+    [SerializeField] private List<Transform> _positions = new List<Transform>();
 
-    private float _randomX;
-    private float _randomZ;
+    private const int Default = 10;
 
-    private IEnumerator Start()
-    {
+    private const float QuaternionRotation = 15.0f;
 
-
-        yield return new WaitForSeconds(1f);
-        PassingAndTakingTasks.SingleTon.TakeThirdTask();    
-    }
+    private List<int> usedIndices = new List<int>();
 
     public void OnThirdTask()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            CarrotSpawner();
-        }
-
-        StartCoroutine(MoreCarrots());
-
+        AddNewCarrotsCount = Default;
+        StartCoroutine(CarrotSpawner());
     }
 
-    private IEnumerator MoreCarrots()
+    public IEnumerator CarrotSpawner()
     {
-        yield return new WaitForSeconds(5f);
+        Quaternion rototationX = Quaternion.Euler(QuaternionRotation, 0, 0);
 
-        int i = 0;
-
-        while (i < 10)
+        for (int i = 0; i < AddNewCarrotsCount; i++)
         {
-            CarrotSpawner();
+            yield return new WaitForSeconds(1f);
 
-            yield return new WaitForSeconds(_TIME_TO_CARROT_GAME);
+            int randomIndex = GetRandomIndex();
+
+            usedIndices.Add(randomIndex);
+
+            Instantiate(_carrot, _positions[randomIndex].position, rototationX);
+
+            Debug.Log(randomIndex);
         }
     }
 
-    public void CarrotSpawner()
+    private int GetRandomIndex()
     {
-        _randomX = Random.Range(-10.0f, 2.0f);
-        _randomZ = Random.Range(-8.0f, 10.0f);
+        int randomIndex = Random.Range(0, _positions.Count);
 
-        Quaternion rototationX = Quaternion.Euler(_QUATERNION_ROTATION, 0, 0);
+        while (usedIndices.Contains(randomIndex))
+        {
+            randomIndex = Random.Range(0, _positions.Count);
+        }
 
-        Vector3 randomPositions = new Vector3(_randomX, _POSITION_Y, _randomZ);
-        Instantiate(_carrot, randomPositions, rototationX);
+        return randomIndex;
     }
 
     private void OnEnable() => PassingAndTakingTasks.OnTakenThirdTask += OnThirdTask;
 
     private void OnDisable() => PassingAndTakingTasks.OnTakenThirdTask -= OnThirdTask;
+
 }

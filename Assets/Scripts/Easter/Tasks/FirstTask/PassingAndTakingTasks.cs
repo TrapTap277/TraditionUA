@@ -12,6 +12,8 @@ public class PassingAndTakingTasks : MonoBehaviour
     public static int SequenceOfTasks = 0;
     #region Tasks
 
+    public static bool IsDone;
+
     public void Start()
     {
         SingleTon = this;
@@ -30,37 +32,44 @@ public class PassingAndTakingTasks : MonoBehaviour
 
     public void TakeThirdTask() //We can use it with buttons in UI
     {
-        Debug.Log("3");
-        OnTakenThirdTask?.Invoke();
+        if (IsDone == false)
+        {
+            Debug.Log("3");
+            OnTakenThirdTask?.Invoke();
+
+            IsDone = true;
+        }
+
     }
 
     #endregion
 
     private void OnTriggerEnter(Collider other)
     {
-        if (SequenceOfTasks == 0)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                TakeFirstTask();
-            }
-        }
+        TakeThirdTask();
+        //if (SequenceOfTasks == 0)
+        //{
+        //    if (other.gameObject.tag == "Player")
+        //    {
+        //        TakeFirstTask();
+        //    }
+        //}
 
-        else if (SequenceOfTasks == 1)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                TakeSecondTask();
-            }
+        //else if (SequenceOfTasks == 1)
+        //{
+        //    if (other.gameObject.tag == "Player")
+        //    {
+        //        TakeSecondTask();
+        //    }
 
-        }
+        //}
 
-        else if (SequenceOfTasks == 2)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                TakeThirdTask();
-            }
-        }
+        //else if (SequenceOfTasks == 2)
+        //{
+        //    if (other.gameObject.tag == "Player")
+        //    {
+        //        TakeThirdTask();
+        //    }
+        //}
     }
 }
