@@ -5,37 +5,26 @@ using UnityEngine;
 
 public sealed class InitialController : MonoBehaviour
 {
-    private InitialController() { }
-
-
-    private static InitialController _instance;
-    //private static bool _isInstanceActive = false;
+    public static InitialController instance { get; private set; }
 
     [SerializeField] private UIManager uiManager;
-    public SoundManager soundManager;
+    //public SoundManager soundManager;
 
     private List<IManager> managerPrefabs = new List<IManager>();
 
-    //public static InitialController Instance => _instance;
-
-    //private InitialController()
-    //{
-    //}
-
-    public static InitialController GetInstance()//Don`t Work, why?
-    {
-        if (_instance == null)
-        {
-            _instance = new InitialController();
-        }
-        return _instance;
-    }
-
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        RegisterManagers();
-        InitializeManagers();
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            RegisterManagers();
+            InitializeManagers();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void RegisterManagers()
@@ -43,8 +32,8 @@ public sealed class InitialController : MonoBehaviour
         managerPrefabs.Add(uiManager);
         Register.Add(uiManager);
 
-        managerPrefabs.Add(soundManager);//aax
-        Register.Add(soundManager); //aax
+        //managerPrefabs.Add(soundManager);//aax
+        //Register.Add(soundManager); //aax
     }
 
     private void InitializeManagers()
@@ -56,14 +45,13 @@ public sealed class InitialController : MonoBehaviour
     {
         managerPrefabs.ForEach(e => e.Dispose());
         managerPrefabs.Clear();
-        Register.Remove(uiManager);
+        //Register.Remove(uiManager);
 
-        Register.Remove(soundManager);//aax
+        //Register.Remove(soundManager);//aax
     }
 
     private void OnDestroy()
     {
-        //_isInstanceActive = false;
         DisposeManagers();
     }
 }

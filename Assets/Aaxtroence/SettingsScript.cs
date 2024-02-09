@@ -21,12 +21,12 @@ public class SettingsScript : MonoBehaviour
         if(previousSoundVolume != SoundVolume)
         {
             previousSoundVolume = SoundVolume;
-            initialController.soundManager.Settings_SetSoundVolume(Mathf.RoundToInt(SoundVolume));
+            //initialController.soundManager.Settings_SetSoundVolume(Mathf.RoundToInt(SoundVolume));
         }
         if(previousMusicVolume != MusicVolume)
         {
             previousMusicVolume = MusicVolume;
-            initialController.soundManager.Settings_SetMusicVolume(Mathf.RoundToInt(MusicVolume));
+            //initialController.soundManager.Settings_SetMusicVolume(Mathf.RoundToInt(MusicVolume));
         }
     }
 }

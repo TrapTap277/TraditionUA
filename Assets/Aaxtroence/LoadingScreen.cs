@@ -18,7 +18,7 @@ public class LoadingScreen : MonoBehaviour
         Tween.OnComplete(() => 
         {
             loadingScreen.SetActive(false);
-            initialController.soundManager.PlayMusic(Music.MainMenu, false);
+            //initialController.soundManager.PlayMusic(Music.MainMenu, false);
         });
         Tween.Play();
         
