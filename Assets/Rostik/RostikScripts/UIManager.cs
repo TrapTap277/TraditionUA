@@ -7,13 +7,19 @@ public class UIManager : MonoBehaviour, IManager
 
     public UIPopup Show(UIPopupType type)
     {
-        UIPopup _popup = Resources.Load<UIPopup>(type.ToString());
-
+      
+        UIPopup _popup = _uiPopups.Find(x => x.UIPopupType == type);
         UIPopup newPopup = null;
         if (_popup != null)
         {
-            newPopup = Instantiate(_popup, transform); 
-            newPopup.Show();
+            newPopup = Resources.Load<UIPopup>(type.ToString());
+            _popup.Show();
+        }
+
+        if (_popup == null)
+        {
+            newPopup = Instantiate(_popup, transform);
+            _popup.Show();
         }
         _uiPopups.Add(newPopup);
         return newPopup;
