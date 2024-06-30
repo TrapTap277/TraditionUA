@@ -1,4 +1,4 @@
-![Progress](https://github.com/TrapTap277/TraditionUA/assets/145903439/0dc4dc6b-e9d6-4ef7-8154-e3a5bb73fed8)In this team project, our task was to create a game based on Ukrainian traditions. Each team member had to create their own level dedicated to a specific holiday, adding their own ideas to taste.
+In this team project, our task was to create a game based on Ukrainian traditions. Each team member had to create their own level dedicated to a specific holiday, adding their own ideas to taste.
 
 I chose the tradition of Easter, and here's how it turned out for me:
 
